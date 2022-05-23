@@ -2,12 +2,19 @@ package org.launchcode.spaday.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
 public class SpaDayController {
+
+    private static List<String> appropriateFacials = new ArrayList<>();
 
     public boolean checkSkinType(String skinType, String facialType) {
         if (skinType.equals("oily")) {
@@ -62,6 +69,11 @@ public class SpaDayController {
                 appropriateFacials.add(facials.get(i));
             }
         }
+
+        model.addAttribute("name", name);
+        model.addAttribute("skintype", skintype);
+        model.addAttribute("manipedi", manipedi);
+        model.addAttribute("appropriateFacials",appropriateFacials);
 
         return "menu";
     }
